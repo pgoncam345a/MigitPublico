@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .dados{
+            width: 150px;
+            height: 150px;
+            margin-bottom: 50px;
+            margin-left: 200px;
+            margin-top: 25px;
+        }
+        .boton{
+            margin-left: 200px;
+            padding: 25px;
+            background-color: rgb(47, 118, 241);
+            border-radius: 25px;
+            color: #fff;
+        }
+    </style>
+    <script>
+       
+         function aleatorio(){
+            let numeroAleatorio = Math.ceil(Math.random() * 6);
+            return numeroAleatorio;
+         }
+         function play(){
+            let numero = aleatorio();
+            let cadena = "./imagen/dados"+numero+".png";
+            console.log(cadena);
+            document.images[0].src = cadena;
+         }
+    </script>
+</head>
+<body>
+   <img src="./imagen/dados1.png" alt="" class="dados"/>
+   <br>
+   <button class="boton" onclick="play()">tirar</button>
+
+
+</body>
+</html>
