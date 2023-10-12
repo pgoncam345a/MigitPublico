@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Json Local</title>
+</head>
+
+<body>
+  <script>
+
+    const peliculas = [
+      {
+        id: 1,
+        nombre: "El sexto sentido",
+        director: "M. Night Shyamalan",
+        clasificacion: "Drama",
+        caratula: "../imagenes/sexto.jpg",
+        sala: "Sala 1",
+        horario: "16:00 h",
+      },
+      {
+        id: 2,
+        nombre: "Pulp Fiction",
+        director: "Tarantino",
+        clasificacion: "Acción",
+        caratula: "../imagenes/pulp.jpg",
+        sala: "Sala 1",
+        horario: "18:00 h",
+      },
+      {
+        id: 3,
+        nombre: "Todo Sobre Mi Madre",
+        director: "Almodobar",
+        clasificacion: "Drama",
+        caratula: "../imagenes/todosobre.jpg",
+        sala: "Sala 1",
+        horario: "20:00 h",
+        descripcion: "",
+      },
+      {
+        id: 4,
+        nombre: "300",
+        director: "Zack Snyder",
+        clasificacion: "Acción",
+        caratula: "../imagenes/300.jpg",
+        sala: "Sala 1",
+        horario: "22:00 h"
+      },
+      {
+        id: 5,
+        nombre: "El silencio de los corderos",
+        director: "Jonathan Demme",
+        clasificacion: "Drama",
+        caratula: "../imagenes/silencio.jpg",
+        sala: "Sala 2",
+        horario: "16:00 h"
+      },
+      {
+        id: 6,
+        nombre: "Forrest Gump",
+        director: "Robert Zemeckis",
+        clasificacion: "Comedia",
+        caratula: "../imagenes/fores.jpg",
+        sala: "Sala 2",
+        horario: "18:00 h"
+      },
+      {
+        id: 7,
+        nombre: "Las Hurdes",
+        director: "Luis Buñuel",
+        clasificacion: "Documental",
+        caratula: "../imagenes/lashurdes.jpg",
+        sala: "Sala 2",
+        horario: "20:00 h"
+      },
+    ];
+    const descripcion = [
+      {
+        id: 1,
+        descripcion: "película estadounidense del género de suspenso psicológico dirigida por M. Night Shyamalan. Fue estrenada en 1999 y es conocida por su impactante giro argumental. La película cuenta la historia de Cole Sear, un niño que asegura poder ver y hablar con los muertos, y su relación con el psicólogo infantil Malcolm Crowe. Bruce Willis interpreta a Malcolm Crowe, mientras que Haley Joel Osment interpreta a Cole Sear.La trama gira en torno a la ayuda que Malcolm intenta brindar a Cole para comprender y controlar su habilidad de ver espíritus. A medida que avanza la película, se desarrollan acontecimientos inquietantes y un misterio que se resuelve en un sorprendente desenlace",
+      },
+      {
+        id: 2,
+        descripcion: "es una película estadounidense de 1994 escrita y dirigida por Quentin Tarantino. Esta icónica película es famosa por su narrativa no lineal y su mezcla de géneros que incluyen el crimen, la comedia y el drama, La película cuenta con un elenco estelar que incluye a John Travolta, Samuel L. Jackson, Bruce Willis y otros actores destacados. Es conocida por su estilo único y diálogos memorables.",
+      },
+      {
+        id: 3,
+        descripcion: "es una película estadounidense de 1994 escrita y dirigida por Quentin Tarantino. Esta icónica película es famosa por su narrativa no lineal y su mezcla de géneros que incluyen el crimen, la comedia y el drama, La película cuenta con un elenco estelar que incluye a John Travolta, Samuel L. Jackson, Bruce Willis y otros actores destacados. Es conocida por su estilo único y diálogos memorables.",
+      },
+      {
+        id: 4,
+        descripcion: "es una película estadounidense de 1994 escrita y dirigida por Quentin Tarantino. Esta icónica película es famosa por su narrativa no lineal y su mezcla de géneros que incluyen el crimen, la comedia y el drama, La película cuenta con un elenco estelar que incluye a John Travolta, Samuel L. Jackson, Bruce Willis y otros actores destacados. Es conocida por su estilo único y diálogos memorables.",
+      },
+      {
+        id: 5,
+        descripcion: "es una película estadounidense de 1994 escrita y dirigida por Quentin Tarantino. Esta icónica película es famosa por su narrativa no lineal y su mezcla de géneros que incluyen el crimen, la comedia y el drama, La película cuenta con un elenco estelar que incluye a John Travolta, Samuel L. Jackson, Bruce Willis y otros actores destacados. Es conocida por su estilo único y diálogos memorables.",
+      },
+      {
+        id: 6,
+        descripcion: "es una película estadounidense de 1994 escrita y dirigida por Quentin Tarantino. Esta icónica película es famosa por su narrativa no lineal y su mezcla de géneros que incluyen el crimen, la comedia y el drama, La película cuenta con un elenco estelar que incluye a John Travolta, Samuel L. Jackson, Bruce Willis y otros actores destacados. Es conocida por su estilo único y diálogos memorables.",
+      },
+      {
+        id: 7,
+        descripcion: "es una película estadounidense de 1994 escrita y dirigida por Quentin Tarantino. Esta icónica película es famosa por su narrativa no lineal y su mezcla de géneros que incluyen el crimen, la comedia y el drama, La película cuenta con un elenco estelar que incluye a John Travolta, Samuel L. Jackson, Bruce Willis y otros actores destacados. Es conocida por su estilo único y diálogos memorables.",
+      },
+    ]
+
+    localStorage.setItem('cartelera', JSON.stringify(peliculas));
+    localStorage.setItem('descripcion', JSON.stringify(descripcion));
+    alert("guardado");
+
+    let cine;
+    cine = JSON.parse(localStorage.getItem('cartelera'));
+    for (let i = 0; i > cine.length; i++)
+      console.log(cine[i].nombre);
+
+    let descrip;
+    descrip = JSON.parse(localStorage.getItem('descripcion'));
+    for (let i = 0; i > descrip.length; i++)
+      console.log(descrip[i].descripcion);
+</script>
+
+</body>
+
+</html>

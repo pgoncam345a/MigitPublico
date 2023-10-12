@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cine </title>
+    <style>
+                .content-select select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: url(./imagenes/downarrow_78496.png) no-repeat 190px 6px rbg(12o, 2, 120) important;
+        }
+        body {
+            background-color: burlywood;
+            background-size: cover;
+            color: black;
+            font-family: "Gilroy";
+        }
+
+        @font-face {
+            font-family: "Gilroy";
+            src: url("./css/fuente2.otf") form("woff");
+        }
+
+        a {
+            font-size: 15pt;
+            color: black;
+            text-decoration: none;
+        }
+
+        label {
+            font-size: 20pt;
+        }
+
+        input+ul {
+            visibility: hidden;
+        }
+
+        h1 {
+            font-size: 40pt;
+            color: black;
+        }
+        .contenedor {
+            padding-top: 50px;
+            padding-left: 100px;
+            width: 90%;
+            height: 650px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        select {
+            width: 230px;
+            height: 50px;
+            border: 2px solid rgb(227, 80, 11);
+            color: rgb(254, 254, 254);
+            font-size: 22pt;
+            font-weight: bolder;
+        }
+
+        .form {
+            width: 100%;
+            height: 460px;
+            background-color: rbga(231, 56, 193, 0.282);
+            visibility: hidden;
+        }
+
+        button {
+            background-color: rgb(227, 80, 11);
+            width: 200px;
+            height: 70px;
+        }
+
+        .opciones {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            margin-top: 150px;
+            margin-left: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+        <div class="check">
+            <h1>Multicines Angelos</h1>
+    <div class="añadir">
+        <span class="texto">Añadir pelicula</span>
+        <img onclick="mostrar()" class="mas" src="./imagenes/mas.png" />
+    </div>
+    <br><br>
+    <div class="form">
+        <table style="border:'0'">
+            <tr>
+                <td><span id="idpelicula"></span></td>
+            </tr>
+            <tr>
+                <td><span>Nombre:</span></td>
+                <td><input type="text" size="20" id="titulo" name="titulo" /></td>
+            </tr>
+            <tr>
+                <td><span>Director:</span></td>
+                <td><input type="text" size="20" id="director" name="director" /></td>
+            </tr>
+            <tr>
+                <td><span>Clasificacion:</span></td>
+                <td>
+                    <div class="content-select">
+                        <select id="clasificacion" name="clasificacion">
+                            <option valud="drama">Drama</option>
+                            <option valud="acción">Acción</option>
+                            <option valud="comedia">Comedia</option>
+                            <option valud="terror">Terror</option>
+                            <option valud="documental">Documental</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><span>Carátula:</span></td>
+                <td><input type="text" size="20" id="caratula" name="caratula" /></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <button onclick="sacarPeli()"><span>POP!</span></button>
+                </td>
+                <td>
+                    <button onclick="anadir()"><span>Guardar</span></button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </div>
+    </div>
+    <div class="opciones">
+        <div>
+            <a class="ver-todas" onclick="comprobar_check()" href="index.html">Inicio</a>
+        </div>
+        <div>
+            <a class="ver-todas" onclick="comprobar_check()" href="todas.html">Todas</a>
+        </div>
+        <div>
+            <a class="ver-todas" onclick="comprobar_check()" href="#">Añadir</a>
+        </div>
+        <div>
+            <a class="ver-todas" onclick="comprobar_check()" href="buscarpelicula.html">Buscar</a>
+        </div>
+        <div>
+            <a class="ver-todas" onclick="comprobar_check()" href="borrarpelicula.html">Eliminar</a>
+        </div>
+        <div>
+            <a class="ver-todas" onclick="comprobar_check()" href="editarpelicula.html">Editar</a>
+        </div>
+    </div>
+    <script>
+        peliculas = JSON.parse(localStorage.getItem("cartelera"));
+        let mostrar = () => {
+            document.querySelector('.form').style.visibility = 'visible';
+            document.getElementById("idpelicula").innerHTML = peliculas.length + 1;
+        }
+        let anadir = () => {
+            let id1 = parseInt(document.getElementById("idpelicula").innerHTML);
+            let titulo1 = document.getElementById("titulo").value;
+            let director1 = document.getElementById("director").value;
+            let clasificacion1 = document.getElementById("clasificacion").value;
+            let caratula1 = document.getElementById("caratula").value;
+
+            // Agregar la nueva película al arreglo
+            peliculas.push({
+                id: id1,
+                nombre: titulo1,
+                director: director1,
+                clasificacion: clasificacion1,
+                caratula: caratula1
+            });
+
+            // Guardar el arreglo actualizado en el localStorage
+            localStorage.setItem('cartelera', JSON.stringify(peliculas));
+        }
+
+    </script>
+</body>
+
+</html>

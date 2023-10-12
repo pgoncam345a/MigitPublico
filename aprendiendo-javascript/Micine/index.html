@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cine </title>
+    <style>
+        body {
+            background-color: burlywood;
+            background-size: cover;
+            color: black;
+            font-family: "Gilroy";
+        }
+
+        @font-face {
+            font-family: "Gilroy";
+            src: url("./css/fuente2.otf") form("woff");
+        }
+
+        a {
+            font-size: 15pt;
+            color: black;
+            text-decoration: none;
+        }
+
+        .enlaces {
+            text-align: center;
+            border: 1px solid white;
+            background-color: grey;
+            margin-right: 15px;
+            padding: 10px;
+            width: 100px;
+            margin-left: 80px;
+        }
+
+        label {
+            font-size: 20pt;
+        }
+
+        input+ul {
+            visibility: hidden;
+        }
+
+        h1 {
+            font-size: 40pt;
+            color: black;
+        }
+
+        input[type=":checked"] {
+            width: 50px;
+            height: 50px;
+            box-shadow: 9px 3px 25px 0 px rgba(128, 0, 0, 0.87);
+        }
+
+        .contenedor {
+            padding-top: 50px;
+            padding-left: 100px;
+            width: 90%;
+            height: 650px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .check {
+            width: 100%;
+            height: 720px;
+            border: 1px solid black;
+            margin-top: 50px;
+            border-radius: 1em;
+            padding-left: 20px;
+            box-shadow: 9px 3px 25px 0px rgba(128, 0, 0, 0.87);
+        }
+
+        .ficha {
+            width: 400px;
+            height: 700px;
+            padding-top: 20px;
+            box-shadow: 9px 3px 25px 0px rgba(128, 0, 0, 0.87);
+            border-radius: 1em;
+            display: grid;
+            justify-content: center;
+            margin-top: 50px;
+            margin-left: 150px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-size: 12px;
+        }
+
+        ul {
+            list-style-image: url("./imagenes/documentary_video_film_5285.png");
+        }
+
+        img {
+            width: 380px;
+            height: 350px;
+            margin-bottom: -20px;
+            margin-left: 10px;
+        }
+
+        li:hover {
+            cursor: pointer;
+            color: white;
+            font-weight: bolder;
+        }
+
+        input:checked+ul {
+            visibility: visible;
+        }
+
+        li {
+            font-weight: bolder;
+        }
+
+        .ficha span {
+            font-weight: bolder;
+        }
+
+        .opciones {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            margin-top: 150px;
+            margin-left: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <div class="check">
+            <h1>Multicines Angelos</h1>
+            <label for="controlador">Haz click en el checkbox para ver las peliculas de nuestra cartelera</label>
+
+            <input onclick="crearPelis()" id="controlador" autocomplete="off" type="checkbox" />
+            <ul id="lista"></ul>
+        </div>
+        <div class="ficha"></div>
+    </div>
+    <div class="opciones">
+        <div class="enlaces">
+            <a href="#">Inicio</a>
+        </div>
+        <div class="enlaces">
+            <a class="ver-todas" onclick="comprobar_check()" href="todas.html">Todas</a>
+        </div>
+        <div class="enlaces">
+            <a class="ver-todas" onclick="comprobar_check()" href="anadirpeliculas.html">Añadir</a>
+        </div>
+        <div class="enlaces">
+            <a class="ver-todas" onclick="comprobar_check()" href="buscarpelicula.html">Buscar</a>
+        </div>
+        <div class="enlaces">
+            <a class="ver-todas" onclick="comprobar_check()" href="borrarpelicula.html">Eliminar</a>
+        </div>
+        <div class="enlaces">
+            <a class="ver-todas" onclick="comprobar_check()" href="editarpelicula.html">Editar</a>
+        </div>
+    </div>
+    <script>
+        /* localstorage */
+        let peliculas = null; // Será un array/objeto
+        let node = null;
+        let descript = null;
+
+        // Proceso de carga desde el LocalStorage
+        peliculas = JSON.parse(localStorage.getItem("cartelera"));
+        descript = JSON.parse(localStorage.getItem("descripcion"));
+
+        // Generar las etiquetas li //
+
+        let crearPelis = () => {
+            if (node == null) {
+                for (let i = 0; i < peliculas.length; i++) {
+                    node = document.createElement("li");
+                    node.setAttribute("onclick", "ficha(" + i + ")");
+                    node.innerHTML = peliculas[i].nombre;
+                    document.getElementById("lista").appendChild(node);
+                }
+            }
+        }
+
+        function ficha(indice) {
+            let cadena = '<img src="' +
+                peliculas[indice].caratula +
+                '" alt="' +
+                peliculas[indice].nombre +
+                '">Nombre: ' +
+                peliculas[indice].nombre +
+                '<br>Director: ' +
+                peliculas[indice].director +
+                '<br>Clasificación: ' +
+                peliculas[indice].clasificacion +
+                '<br>' + peliculas[indice].sala +
+                '<br><br>Descripcion: ' +
+                descript[indice].descripcion;
+            '<br><br>';
+            document.querySelector(".ficha").innerHTML = cadena;
+        }
+        /* end localstorage */
+
+
+    </script>
+</body>
+
+</html>

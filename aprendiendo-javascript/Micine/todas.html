@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: burlywood;
+        }
+
+        h1 {
+            font-size: 95px;
+            margin-top: 5px;
+            margin-left: 50px;
+            color: white;
+        }
+
+        h2 {
+            margin-top: 35px;
+            color: white;
+        }
+
+        .cabecera {
+            display: grid;
+            grid-template-columns: 80% 20%;
+            background-color: black;
+            height: 120px;
+        }
+
+        .central, .central1 {
+            display: grid;
+            grid-template-columns: repeat(4, 15%);
+            margin-top: 30px;
+            column-gap: 50px;
+            row-gap: 10px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .salas {
+            display: grid;
+            grid-template-columns: 1fr;
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 30px;
+            font-weight: bold;
+        }
+
+        .item {
+            background-color: rgba(46, 2, 61, 0.5);
+            color: white;
+            padding: 1em;
+            height: 200px;
+            border-radius: 1em;
+            border: 1px solid black;
+            box-shadow: 9px 3px 25px 0px rgba(128, 0, 0, 0.87);
+            display: grid;
+            justify-content: center;
+        }
+
+        .imagenes {
+            width: 170px;
+            height: 170px;
+        }
+
+        .bajo {
+            margin-bottom: 30px;
+        }
+        .opciones {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            margin-top: 30px;
+            margin-left: 100px;
+        }
+        .pie {
+            display: grid;
+            grid-template-columns: 1fr;
+            background-color: black;
+            text-align: center;
+            color: white;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        .pie a {
+            margin-right: -95%;
+            text-decoration: none;
+            color: white;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenedor">
+        <div class="cabecera">
+            <div>
+                <h1>NOVIEMBRE</h1>
+            </div>
+            <div>
+                <h2>Multicines Angelos</h2><br>
+            </div>
+        </div>
+        <div class="salas">SALA 1</div>
+        <div class="central">
+            <script>
+                let peliculas = null; // Será un array/objeto
+                let node = null;
+                let node1 = null;
+                // Proceso de carga desde el LocalStorage
+                peliculas = JSON.parse(localStorage.getItem("cartelera"));
+                let medio = (peliculas.length / 2);
+                for (let i = 0; i < medio; i++) {
+                    let node = document.createElement("div");
+                    node.setAttribute("class", "item item" + i);
+                    document.querySelector(".central").appendChild(node);
+                    node.innerHTML =
+                        '<img src="' +
+                        peliculas[i].caratula +
+                        '" class="imagenes"><br><span>' +
+                        peliculas[i].horario + 
+                        "</span>";
+                }
+            </script>
+        </div>
+        <div class="salas">SALA 2</div>
+        <div class="central1">
+            <script>
+                // Proceso de carga desde el LocalStorage
+                for (i = Math.ceil(medio); i < peliculas.length; i++) {
+                    node = document.createElement("div");
+                    node.setAttribute("class", "item item" + i);
+                    document.querySelector(".central1").appendChild(node);
+                    node.innerHTML =
+                        '<img src="' +
+                        peliculas[i].caratula +
+                        '" class="imagenes"><br><span>' +
+                        peliculas[i].horario +
+                        "</span>";
+                        
+                }
+            </script>
+        </div>
+            <div class="opciones">
+        <div>
+            <a class="ver-todas" onclick="comprobar_check()" href="index.html">Inicio</a>
+        </div>
+        <div>
+            <a class="ver-todas" onclick="comprobar_check()" href="#">Todas</a>
+        </div>
+        <div>
+            <a class="ver-todas" onclick="comprobar_check()" href="anadirpeliculas.html">Añadir</a>
+        </div>
+        <div>
+            <a class="ver-todas" onclick="comprobar_check()" href="buscarpelicula.html">Buscar</a>
+        </div>
+        <div>
+            <a class="ver-todas" onclick="comprobar_check()" href="eliminarpelicula.html">Eliminar</a>
+        </div>
+        <div>
+            <a class="ver-todas" onclick="comprobar_check()" href="editarpelicula.html">Editar</a>
+        </div>
+    </div>
+        <div class="pie">
+            Muticines Angelos<br>
+            C/ Las Acacias, 23<br>
+            39520 Murcia
+            <p class="volver"><a href="index.html">Volver</a></p>
+        </div>
+    </div>
+</body>
+
+</html>

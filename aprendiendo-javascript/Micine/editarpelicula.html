@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cine </title>
+    <style>
+        .content-select select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: url(./imagenes/downarrow_78496.png) no-repeat 190px 6px rbg(12o, 2, 120) important;
+        }
+
+        body {
+            background-color: burlywood;
+            background-size: cover;
+            color: black;
+            font-family: "Gilroy";
+        }
+
+        @font-face {
+            font-family: "Gilroy";
+            src: url("./css/fuente2.otf") form("woff");
+        }
+
+        a {
+            font-size: 15pt;
+            color: black;
+            text-decoration: none;
+        }
+
+        label {
+            font-size: 20pt;
+        }
+
+
+
+        h1 {
+            font-size: 40pt;
+            color: black;
+        }
+
+        .contenedor {
+            padding-top: 50px;
+            padding-left: 100px;
+            width: 90%;
+            height: 650px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        select {
+            width: 230px;
+            height: 50px;
+            border: 2px solid rgb(227, 80, 11);
+            color: rgb(254, 254, 254);
+            font-size: 22pt;
+            font-weight: bolder;
+        }
+
+        .form, .form1 {
+            visibility: hidden;
+            width: 50%;
+            height: 160px;
+            background-color: rbga(231, 56, 193, 0.282);            
+        }
+        .form {
+            margin-top: -500px;
+        }
+
+        button {
+            background-color: rgb(227, 80, 11);
+            width: 200px;
+            height: 70px;
+        }
+
+        .opciones {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            margin-top: 150px;
+            margin-left: 100px;
+        }
+
+        .ficha {
+            width: 400px;
+            height: 650px;
+            padding-top: 20px;
+            box-shadow: 9px 3px 25px 0px rgba(128, 0, 0, 0.87);
+            border-radius: 1em;
+            display: grid;
+            justify-content: center;
+            margin-top: -150px;
+            margin-left: 960px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-size: 12px;
+        }
+
+        .imgPeli {
+            width: 380px;
+            height: 350px;
+            margin-bottom: -20px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+        <div class="check">
+            <h1>Multicines Angelos</h1>
+            <div class="añadir">
+                <span class="texto">Editar pelicula</span>
+                <img onclick="mostrar()" class="mas" src="./imagenes/mas.png" />
+            </div>
+            <div class="ficha"></div>
+            <br><br>
+            <div class="form">
+                <table style="border:'0'">
+                    <tr>
+                        <td><span id="idpelicula"></span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Id:</span></td>
+                        <td><input type="text" size="20" id="buscarId" name="titulo" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                        </td>
+                        <td>
+                            <button onclick="buscar()"><span>Editar</span></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="form1">
+                <table style="border:'0'">
+                    <tr>
+                        <td><span>Nombre:</span></td>
+                        <td><input type="text" size="20" id="tituloEdi" name="titulo" /></td>
+                    </tr>
+                    <tr>
+                        <td><span>Director:</span></td>
+                        <td><input type="text" size="20" id="directorEdi" name="director" /></td>
+                    </tr>
+                    <tr>
+                        <td><span>Clasificacion:</span></td>
+                        <td>
+                            <div class="content-select">
+                                <select id="clasificacionEdi" name="clasificacion">
+                                    <option valud="drama">Drama</option>
+                                    <option valud="acción">Acción</option>
+                                    <option valud="comedia">Comedia</option>
+                                    <option valud="terror">Terror</option>
+                                    <option valud="documental">Documental</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>Carátula:</span></td>
+                        <td><input type="text" size="20" id="caratulaEdi" name="caratula" /></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+
+                        </td>
+                        <td>
+                            <button onclick="guardar()"><span>Guardar</span></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="opciones">
+        <div>
+            <a class="ver-todas" onclick="comprobar_check()" href="index.html">Inicio</a>
+        </div>
+        <div>
+            <a class="ver-todas" onclick="comprobar_check()" href="todas.html">Todas</a>
+        </div>
+        <div>
+            <a class="ver-todas" onclick="comprobar_check()" href="anadirpeliculas.html">Añadir</a>
+        </div>
+        <div>
+            <a class="ver-todas" onclick="comprobar_check()" href="buscarpelicula.html">Buscar</a>
+        </div>
+        <div>
+            <a class="ver-todas" onclick="comprobar_check()" href="eliminarpelicula.html">Eliminar</a>
+        </div>
+        <div>
+            <a class="ver-todas" onclick="comprobar_check()" href="editarpelicula.html">Editar</a>
+        </div>
+    </div>
+    <script>
+        peliculas = JSON.parse(localStorage.getItem("cartelera"));
+        descript = JSON.parse(localStorage.getItem("descripcion"));
+        var peliculaEncontrada;
+        let mostrar = () => {
+            document.querySelector('.form').style.visibility = 'visible';
+        }
+        let mostrar1 = () => {
+            document.querySelector('.form1').style.visibility = 'visible';
+        }
+        let buscar = () => {
+            mostrar1();
+            var busca = document.getElementById("buscarId").value;
+            peliculaEncontrada = peliculas.find((peliculas) => peliculas.id == busca);
+            console.log(busca +"  " + peliculaEncontrada.nombre +" "+"hola");
+            if (peliculaEncontrada) {
+                busca = busca - 1;
+                ficha(busca);
+                document.getElementById("tituloEdi").value = peliculaEncontrada.nombre;
+                document.getElementById("directorEdi").value = peliculaEncontrada.director;
+                document.getElementById("clasificacionEdi").value = peliculaEncontrada.clasificacion;
+                document.getElementById("caratulaEdi").value = peliculaEncontrada.caratula;
+                localStorage.setItem('cartelera', JSON.stringify(peliculas));
+            } else console.log("Pelicula no encontrada");
+        }
+        let guardar = () => {
+            
+            peliculaEncontrada.nombre = document.getElementById("tituloEdi").value;
+            peliculaEncontrada.director = document.getElementById("directorEdi").value;
+            peliculaEncontrada.clasificacion = document.getElementById("clasificacionEdi").value;
+            peliculaEncontrada.caratula = document.getElementById("caratulaEdi").value;
+            localStorage.setItem('cartelera', JSON.stringify(peliculas));
+            localStorage.setItem('cartelera', JSON.stringify(peliculas));
+        }
+        function ficha(indice) {
+            let cadena = '<img src="' +
+                peliculas[indice].caratula +
+                '" class="imgPeli" alt="' +
+                peliculas[indice].nombre +
+                '">Nombre: ' +
+                peliculas[indice].nombre +
+                '<br>Director: ' +
+                peliculas[indice].director +
+                '<br>Clasificación: ' +
+                peliculas[indice].clasificacion +
+                '<br>' + peliculas[indice].sala +
+                '<br><br>Descripcion: ' +
+                descript[indice].descripcion;
+            '<br><br>';
+            document.querySelector(".ficha").innerHTML = cadena;
+        }
+    </script>
+</body>
+
+</html>
